@@ -693,10 +693,14 @@ contract SafeHouse is Context, IERC20, Ownable {
     uint256 public _liquidityFee = 5;                                                    // % to swap & liquify + wallets
     uint256[] public _liquidityFeeSplit = [50,50];                                       // % division between swap+liquify & wallets
     uint256 public _maxTxAmount = _tTotal.div(200);                                      // max transaction amount (of total supply)
-    uint256 private numTokensSellToAddToLiquidity = _tTotal.div(2000);                   // contract balance to trigger swap & liquify + wallet transfer.
+    uint256 private numTokensSellToAddToLiquidity = _maxTxAmount.div(10);                // contract balance to trigger swap & liquify + wallet transfer.
     address public  pancakeRouterAddress = 0x10ED43C718714eb63d5aA57B78B54704E256024E;   // Pancake Router Version 2 address
     uint[] public _percentages = [100];                                                  // % of liquidity fee split to wallet(s)
     address payable[] public _wallets = [                                                // wallet(s) to receive liquidity fee split
+        0xFefc71ab50c01DCCfB6Bd6270460a16BFbc4e9Cd                                       //
+    ];                                                                                   //
+    address payable[] public _addToExcluded = [                                          // wallet(s) to add to excluded immediately.
+        0x000000000000000000000000000000000000dEaD,                                      //
         0xFefc71ab50c01DCCfB6Bd6270460a16BFbc4e9Cd                                       //
     ];                                                                                   //
     // ********************************** END VARIABLES ***********************************
@@ -756,6 +760,11 @@ contract SafeHouse is Context, IERC20, Ownable {
         //exclude owner and this contract from fee
         _isExcludedFromFee[owner()] = true;
         _isExcludedFromFee[address(this)] = true;
+
+        //exclude these addresses from receiving reflections.
+        for(uint i=0; i<_addToExcluded.length; i++){
+            excludeFromReward(_addToExcluded[i]);
+        }
         
         emit Transfer(address(0), _msgSender(), _tTotal);
     }
