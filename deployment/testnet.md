@@ -26,6 +26,8 @@
 
 - Change CONTRACT to `SafeHouse - SafeHouse.sol`
 
+- Beside "Deploy", click the box, and type `1`.
+
 - Click Deploy
 
 - Wait for deployment on BSC Testnet.
