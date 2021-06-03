@@ -694,7 +694,8 @@ contract SafeHouse is Context, IERC20, Ownable {
     uint256[] public _liquidityFeeSplit = [50,50];                                       // % division between swap+liquify & wallets
     uint256 public _maxTxAmount = _tTotal.div(200);                                      // max transaction amount (of total supply)
     uint256 private numTokensSellToAddToLiquidity = _maxTxAmount.div(10);                // contract balance to trigger swap & liquify + wallet transfer.
-    address public  pancakeRouterAddress = 0x10ED43C718714eb63d5aA57B78B54704E256024E;   // Pancake Router Version 2 address
+    //address public  pancakeRouterAddress = 0x10ED43C718714eb63d5aA57B78B54704E256024E; // Pancake Router Version 2 address (mainnet)
+    address public  pancakeRouterAddress = 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;   // Pancake Router Version 2 address (testnet)
     uint[] public _percentages = [100];                                                  // % of liquidity fee split to wallet(s)
     address payable[] public _wallets = [                                                // wallet(s) to receive liquidity fee split
         0xFefc71ab50c01DCCfB6Bd6270460a16BFbc4e9Cd                                       //
