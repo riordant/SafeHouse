@@ -61,7 +61,9 @@
 
 # Add Liquidity
 
-- go to https://pancake.kiemtienonline360.com/#/add/BNB/{ADDRESS} (PancakeSwap testnet that works)
+- go to https://pancake.kiemtienonline360.com/#/add/BNB/{ADDRESS} (PancakeSwap testnet that works). 
+
+- Give it up to 10 seconds to load the token contract.
 
 - Click "Connect" in the top right, select your deployment address
 
